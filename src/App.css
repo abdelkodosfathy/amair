@@ -1,0 +1,19 @@
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+#root {
+  height: calc(100% - 85px);
+}
+body{
+}
+.home{
+  display: flex;
+}
+.grid-container{
+  max-width: 100%;
+  overflow-y: scroll;
+  max-height: calc(100vh - 85px);
+}
