@@ -3,10 +3,7 @@ import { createContext, useState } from 'react'
 export const DataContext = createContext();
 export const FunctionsContext = createContext();
 
-
-
 export function TokenProvider({ children }){
-  // const [token,setToken] = useState(null);
   const [loginState, setLoginState] = useState({
     login: false,
     token: null
@@ -15,7 +12,6 @@ export function TokenProvider({ children }){
   const [lang, setLang] = useState("Ar");
 
   function changeToken(e, state) {
-    // setToken(e);
     if(state === 200){
       setLoginState(prev => ({
         'login': true,

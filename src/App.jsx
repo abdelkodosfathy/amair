@@ -2,7 +2,7 @@ import { BrowserRouter, Routes, Route} from "react-router-dom";
 import { useEffect, useState } from "react";
 import './App.css'
 import NavBar from './components/Navbar/NavBar'
-import Home from './pages/Home';
+import Home from './pages/Home/Home';
 import Rent from './pages/Rent';
 import RentOut from './pages/RentOut';
 import Sell from './pages/Sell';
@@ -28,7 +28,7 @@ function App() {
           <Route path="/rent" element={<Rent/>}/>
           <Route path="/rentOut" element={<RentOut/>}/>
           <Route path="/sell" element={<Sell/>}/>
-          <Route path="/buy" element={<Buy/>}/>
+          <Route path="/buy" element={<Buy cardsData={data}/>}/>
           <Route path="*" element={<NotFound/>}/>
       </Routes>
     </BrowserRouter>

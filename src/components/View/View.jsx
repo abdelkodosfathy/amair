@@ -3,8 +3,9 @@ import image1 from '../../assets/1.jpg'
 import image2 from '../../assets/2.webp'
 import image3 from '../../assets/3.jpg'
 const View = ({images, data, user}) => {
-
-  
+  const myData = {
+    ...data,
+  }
   return (
     <div className='view'>
       <div className="dep-images">
@@ -31,7 +32,27 @@ const View = ({images, data, user}) => {
         <p><span>$3200</span>/month</p>
       </div>
       <div className="features">
-        
+      {myData.bedrooms? <span><i className="fa-solid fa-bed"></i> {myData.bedrooms}</span> : null}
+          {myData.bathrooms? <span><i className="fa-solid fa-bath"></i> {myData.bathrooms}</span> : null}
+          {myData.size? <span><i className="fa-solid fa-ruler-combined"></i> {myData.size}</span> : null}
+      </div>
+      <div className="description">
+        <h1>Properties details</h1>
+      </div>
+      {/* <p>
+      Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+      Ipsum velit vitae adipisci cumque, sed qui minima odio
+      dolorum impedit, pariatur hic alias, beatae consequatur.
+      Ut, voluptate. Quasi similique perspiciatis earum.
+      </p> */}
+      <div className="user-info">
+        <div className="user-img">
+          <img src="" alt="" />
+        </div>
+        <div className="user-data"></div>
+        <div className="user-contact-btn">
+          <button></button>
+        </div>
       </div>
     </div>
   )

@@ -18,19 +18,7 @@ a{
   text-decoration: none;
   color:white;
 }
-.search-input{
-  all:unset;
-  border: none;
-  background: rgba(255, 255, 255, 0.3);
-  padding: 10px 20px;
-  color: white;
-}
-.search-input::placeholder{
-  color: white;
-}
-.search-input:active{
-  /* border: none; */
-}
+
 .actions{
   display: flex;
   gap: 20px;
