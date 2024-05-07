@@ -4,7 +4,7 @@ import './card.css';
 import { DataContext } from '../Context'
 import dep from '../../imgs/dep2.jpg';
 
-const Card = ({ data, ...props}) => {
+const Card = ({ handleUnLoveCard,handleRemoveCard,onUpdate,action, data,...props}) => {
   const darkMode = useContext(DataContext).darkMode;
   const myData = {
     ...data,
@@ -24,7 +24,7 @@ const Card = ({ data, ...props}) => {
           'Authorization': `Bearer ${token}`
         },
         method: `${state? 'post' : 'get'}`,
-        baseURL: 'https://backend.amaireg.com/api/',
+        baseURL: 'https://app.having.market/api/',
         url: `${state? 'fav' : 'delfav/'+cardId}`,
         data: {
           task_id: `${cardId}`,
@@ -42,18 +42,25 @@ const Card = ({ data, ...props}) => {
     // navigate to location
   }
   function handleCardClicked(){
-    // console.log(myData)
+    console.log(myData);
+    props.onSelect(myData);
   }
   return (
-    <div className={`card ${myData.darkMode? 'dark' : ''}`} key={props.key} onClick={handleCardClicked}>
-      <img src={dep} alt="" className="card-img"/>
+    <div className="card-container">
+    <div className={`card ${myData.darkMode&& 'dark'} 
+    ${props.selectedIndex === myData.id && 'selected'}`} 
+    key={props.key} 
+    onClick={(e) => handleCardClicked(e)}>
+      <div className="card-img">
+      <img src={`https://app.having.market/public/images/${myData.img[0].img_name}`} alt="" />
+      </div>
       <div className="card-data">
         <h2>{myData.type}</h2>
         <div onClick={handleLocation}>
           <p>{myData.city}</p>
           <p>{myData.address}</p>
         </div>
-        <h3>${myData.price}</h3>
+        <h3>${myData.price || "3,000,000"}</h3>
         <div className="dep-features">
           {myData.bedrooms? <span><i className="fa-solid fa-bed"></i> {myData.bedrooms}</span> : null}
           {myData.bathrooms? <span><i className="fa-solid fa-bath"></i> {myData.bathrooms}</span> : null}
@@ -68,11 +75,31 @@ const Card = ({ data, ...props}) => {
           </button>
         </div>
         <div className="love-icon">
-          {loved ? (<i className="fa-solid fa-heart" onClick={() => handleLovedCard(false, myData.id)}></i> ) 
-          : (<i className="fa-regular fa-heart" onClick={() => handleLovedCard(true, myData.id)}></i>)}
+          {
+            action === "fav" ? (<>
+              <i className="fa-solid fa-heart-crack"
+              onClick={() => handleUnLoveCard()}></i>
+              {myData.action === 0?<i class="fa-solid fa-s"></i>:
+              myData.action === 1? <i class="fa-solid fa-r"></i>: null}
+              </>
+            ) : action === "tasks" ? (
+              <>
+              <i className="fa-solid fa-xmark" onClick={() => handleRemoveCard()}></i>
+              <i className="fa-solid fa-pen" onClick={onUpdate}></i>
+              </>
+              ) : (
+            loved ? (
+              <i className="fa-solid fa-heart"
+              onClick={() => handleLovedCard(false, myData.id)}></i>
+            ) : (
+              <i className="fa-regular fa-heart"
+              onClick={() => handleLovedCard(true, myData.id)}></i>))
+          }
+          
           <i className="fa-solid fa-location-dot"></i>
-        </div>
+        </div> 
       </div>
+    </div>
     </div>
   )
 }

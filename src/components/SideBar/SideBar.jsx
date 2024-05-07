@@ -4,11 +4,11 @@ import Combobox from '../Combobox/Combobox';
 import Button from './Button';
 import { DataContext } from '../Context';
 const SideBar = () => {
-  const darkMode = useContext(DataContext).darkMood;
+  
+  const darkMode = useContext(DataContext).darkMode;
   const [property,setProperty] = useState('house');
 
   function propertyType(prop){
-    console.log(prop);
     setProperty(prop);
   }
   

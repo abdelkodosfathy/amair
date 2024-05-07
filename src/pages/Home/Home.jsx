@@ -3,9 +3,16 @@ import main from '../../assets/dhabi.jpg'
 import './Home.css'
 import modern from '../../imgs/modernRoom.jpg'
 import luxury from '../../imgs/roomluxry.jpg'
-import keyimage from '../../imgs/key.jpg'
 import aboutimage from '../../imgs/about-section.avif'
-const Home = ({cardsData}) => {
+import Footer from './footer/Footer'
+import { useNavigate } from 'react-router-dom'
+
+const Home = ({notAuth}) => {
+  const navigate = useNavigate();
+  if(notAuth){
+    console.log("auth: please login");
+  }
+  
   return (
     
     <div className='home'>
@@ -13,9 +20,8 @@ const Home = ({cardsData}) => {
         <img src={main} alt="" width="100%"/>
         <div className="home-search">
           <div className="search-filters">
-            <button>للبيع</button>
-            <button>للايجار</button>
-            <button>تجارية</button>
+            <button onClick={()=> navigate("/buy")}>للبيع</button>
+            <button onClick={()=> navigate("/rent")}>للايجار</button>
           </div>
           <div className="search-bar">
             <button>ابحث</button>
@@ -45,18 +51,20 @@ const Home = ({cardsData}) => {
             {/* Discover Your Dream Home with Our Exclusive Properties */}
             اكتشف منزل أحلامك مع عقاراتنا الحصرية
         </h1>
-        <div className="provided-featur">
-          <img src={modern} alt="" width="700px"/>
-          <div className="provided-text">
-            <p>
-              {/* Explore our modern units designed for comfort and style.
-              From cozy studios to spacious penthouses, our properties cater to every lifestyle. */}
-              استكشف وحداتنا الحديثة المصممة للراحة والأناقة.
-              من الاستوديوهات المريحة إلى البنتهاوس الواسعة، عندنا كل اللي تحتاجه.
-            </p>
+        <div className="feature-container">
+          <div className="provided-featur right">
+            <img src={modern} alt="" width="700px"/>
+            <div className="provided-text">
+              <p>
+                {/* Explore our modern units designed for comfort and style.
+                From cozy studios to spacious penthouses, our properties cater to every lifestyle. */}
+                استكشف وحداتنا الحديثة المصممة للراحة والأناقة.
+                من الاستوديوهات المريحة إلى البنتهاوس الواسعة، عندنا كل اللي تحتاجه.
+              </p>
+            </div>
           </div>
         </div>
-        <div className="provided-featur">
+        <div className="provided-featur left">
           <div className="provided-text">
             <p>
               اكتشف العيش الفاخر في ممتلكاتنا الحصرية مع وسائل الراحة الحديثة والديكور الداخلي المصمم.
@@ -67,7 +75,7 @@ const Home = ({cardsData}) => {
           </div>
           <img src={luxury} alt="" width="700px"/>
         </div>
-        <div className="provided-featur">
+        <div className="provided-featur right">
           <img src={aboutimage} alt="" width="700px"/>
           <div className="provided-text">
             <p>
@@ -78,8 +86,19 @@ const Home = ({cardsData}) => {
             </p>
           </div>
         </div>
+        <div className="provided-featur left">
+          <div className="provided-text">
+            <p>
+            استمتع بإطلالات خلابة ومساحات معيشة أنيقة في ممتلكاتنا. اختار بين الشقق الحضرية والمنازل الريفية، كل حاجة مصممة بأناقة وسحر."
+
+              {/* Enjoy stunning views and elegant living spaces in our properties.
+              Choose from urban lofts to townhouses, each crafted for sophistication and charm. */}
+            </p>
+          </div>
+          <img src={luxury} alt="" width="700px"/>
+        </div>
       </section>
-      
+      <Footer></Footer>
     </div>
   )
 }

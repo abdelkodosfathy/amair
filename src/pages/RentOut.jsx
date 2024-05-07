@@ -1,6 +1,7 @@
 const RentOut = () => {
+
   return (
-    <h1>RentOut</h1>
+    <h1>rent</h1>
   )
 }
 
