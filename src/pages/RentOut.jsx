@@ -1,7 +1,8 @@
-const RentOut = () => {
+import React from 'react'
 
+const RentOut = () => {
   return (
-    <h1>rent</h1>
+    <div>RentOut</div>
   )
 }
 

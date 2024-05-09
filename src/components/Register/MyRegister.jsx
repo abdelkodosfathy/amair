@@ -21,7 +21,9 @@ const myRegister = () => {
   return (
     <form className='register' onSubmit={handleSubmit}>
       <h1>Register</h1>
+
         <Input id="register-name" type="text" name="name" placeholder="show to other">Name</Input>
+
       <div className="row">
         <Input id="register-email" type="email" name="email">email</Input>
         <Input id="phone" type="tel" name="phone">phone</Input>
@@ -30,7 +32,10 @@ const myRegister = () => {
         <Input id="register-password" type="password" name="password">Password</Input>
         <Input id="confirm-password" type="password" name="confirm_password">Confirm Password</Input>
       </div>
+      
       <button className='register-btn' onClick={handleSubmit}>Register</button>
+      
+      
     </form>
   )
 }

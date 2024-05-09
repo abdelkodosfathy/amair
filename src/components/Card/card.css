@@ -1,54 +1,22 @@
 .card{
   width: 600px;
-  height:  280px;
-  /* box-shadow: 0px 2px 10px -6px black; */
-  /* box-shadow: 0 0 23px -18px black; */
-
+  height: 300px;
+  /* border-radius: 15px; */
+  box-shadow: 0px 2px 10px -6px black;
   background: rgb(255, 255, 255);
   display: flex;
   padding: 10px;
-  margin: 5px auto ;
-  position: relative;
-}
-.card::after{
-  /* position: absolute;
-  content: 'rent';
-  color: white;
-  padding: 5px;
-  width: 60px;
-  height: 5px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transform: rotate(-45deg);
-  background: #283593;
-  box-shadow: 0 0 10px -6px black;
-  left: -18px;
-  top: 9px; */
-}
-.card.selected{
-  border: #43aa71 2px solid;
-  padding: 8px;
-
-}
-.card-img img{
-  width: 100%;
+  margin: 10px;
 }
 .card-img{
-  display: flex;
-  align-items: center;
-  /* height: 100%; */
-  overflow: hidden;
-  max-width: 45%;
+  height: 100%;
   margin-right: 10px;
 }
 .card-data{
   width: 100%;
   display: grid;
   position: relative;
-}
-.card-data > div{
-  max-width: calc(100% - 25px); 
+  /* align-items: ; */
 }
 .card-data h3{
   margin: 10px 0px;
@@ -71,13 +39,13 @@
   cursor: pointer;
 
 }
-.card-btns .card-phone-btn{
+.card-btns .card-view-btn{
   background: black;
 }
-.card-btns .card-mail-btn{
-  /* background: #43aa71; */
-  background: var(--green);
+.card-btns .card-save-btn{
+  background: #43aa71;
 }
+
 .dep-features{
   color: gray;
   display: flex;
@@ -89,18 +57,9 @@
   text-align: left;
 }
 .love-icon{
+  width: 30px;
+  height: 30px;
   font-size: 30px;
   position: absolute;
   right: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 15px;
-}
-.love-icon i{
-  cursor: pointer;
-}
-.card.dark{
-  background: #4c4e53;
-  color: white;
 }

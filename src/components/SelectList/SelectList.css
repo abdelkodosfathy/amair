@@ -16,7 +16,7 @@
 }
 
 .select-list .button:hover {
-  /* background-color: hsl(204 20% 96%); */
+  background-color: hsl(204 20% 96%);
 }
 
 .select-list .button[aria-disabled="true"] {
@@ -24,7 +24,7 @@
 }
 
 .select-list .button[aria-expanded="true"] {
-  /* background-color: hsl(204 20% 96%); */
+  background-color: hsl(204 20% 96%);
 }
 
 .select-list .button[data-focus-visible] {

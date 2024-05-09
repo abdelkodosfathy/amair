@@ -4,7 +4,6 @@ import {createPortal} from 'react-dom';
 import './Modal.css';
 const Modal = forwardRef(function Modal({children, buttonCaption}, ref) {
   const dialog = useRef();
-  
   function handleClose () {
     dialog.current.close();
   }
@@ -26,6 +25,8 @@ const Modal = forwardRef(function Modal({children, buttonCaption}, ref) {
         </button>
       </div>
       {children}
+      {/* <form method="dialog" className='btn'>
+      </form> */}
     </dialog>,
     document.getElementById("modal-root")
   );

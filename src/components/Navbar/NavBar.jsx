@@ -1,65 +1,36 @@
-import { useRef,useContext, useState, useEffect } from 'react'
-import { Link, useNavigate } from 'react-router-dom';
-import { FunctionsContext, DataContext } from '../Context';
+import React, { useRef } from 'react'
+import { Link } from 'react-router-dom';
+import Modal from '../Modal/Modal';
+import Login from '../Login/Login';
+// import MyRegister from '../Register/MyRegister';
 import './NavBar.css'
-import AuthForm from '../Login/AuthForm';
 import SelectList from '../SelectList/SelectList';
-// import { useEffect } from 'react';
 const NavBar = () => {
-  const navigate = useNavigate();
-  const x = useContext(DataContext);
-  const dark = useContext(DataContext).darkMode;
-  const darkModeChanger = useContext(FunctionsContext).changeDarkMode;
-  const [userList, setUserList] = useState();
-
-  function darkMode() {
-    if(dark){
-      darkModeChanger(false);
-    }else {
-      darkModeChanger(true);
-    }
+  const LogModal = useRef();
+  const regiterModal = useRef();
+  
+  function myFunction() {
+    document.getElementById("list-roll-down").classList.toggle("is-active");
   }
-  function handelUserList(){
-    setUserList(prev => !prev);
+  function handleLogInClick(){
+    LogModal.current.open();
   }
-
-//click out side the element
-const userIconRef = useRef(null);
-const userListRef = useRef(null);
-
-  useEffect(() => {
-    function handleClickOutside(event) {
-      if (userIconRef.current && !userIconRef.current.contains(event.target)) {
-        if(userListRef.current && !userListRef.current.contains(event.target)){
-          console.log('Clicked outside the element');
-          setUserList(false)
-        }else {
-          console.log("list clicked ?");
-        }
-      }
-    }
-
-    document.addEventListener('click', handleClickOutside);
-    return () => {
-      document.removeEventListener('click', handleClickOutside);
-    };
-  }, []);
-
-
-  function handleLogout(){
-
-  }
-
-  const AuthModal = useRef();
-  function handleAuthInClick(){
-    AuthModal.current.open();
+  function handleRegClick(){
+    LogModal.current.close();
+    regiterModal.current.open();
   }
   return (
     <>
-    <AuthForm ref={AuthModal}></AuthForm>
+    <Modal ref={LogModal} >
+      <Login onRegister = {handleRegClick}/>
+    </Modal>
+    {/* 
+    <Modal ref={regiterModal} >
+    <MyRegister />
+    </Modal> */}
     <nav className='navbar'>
       <div className="logo">
-        <h1><i className="fa-solid fa-city"></i> HAVING</h1>
+      <h1><i className="fa-solid fa-city"></i> AMAIR</h1>
       </div>
       <ul>
         <li>
@@ -71,56 +42,18 @@ const userListRef = useRef(null);
         <li>
           <Link to={"/rent"}>Rent</Link>
         </li>
+        <li>
+          <Link to={"/sell"}>Sell</Link>
+        </li>
+        <li>
+          <Link to={"/rentOut"}>Rent out</Link>
+        </li>
       </ul>
       <div className="actions">
-        <button
-        className={`dark-mood ${dark ? "fa-solid" : "fa-regular"} fa-eye`}
-        onClick={darkMode} />
-        { x.loginState.login ? 
-        <>
-        <div className="user-icon">
-        <i ref={userIconRef} className="fa-solid fa-user" onClick={handelUserList}></i>
-        {
-          userList && 
-          <ul ref={userListRef} className='list-items'>
-            <li>Profile</li>
-            <li onClick={() => navigate("/user")}>
-              Dashboard
-            </li>
-            <li>
-            <i class="fa-solid fa-right-from-bracket"></i>
-            </li>
-          </ul>
-        }
+        <div className="search-bar">
+          <input type="text" className="search-input" placeholder='Search...'/>
         </div>
-        </>:
-        <button onClick={handleAuthInClick}>
-          <i className="fa-solid fa-right-to-bracket"></i>
-        </button>
-        }
-        {/* <div className="user-icon">
-          {
-            x.loginState.login ?
-            <>
-            <ul className="list-items">
-              <li>one</li>
-              <li>two</li>
-              <li>
-              <i 
-                onClick={handleAuthInClick}
-                class="fa-solid fa-right-to-bracket"></i>
-              </li>
-            </ul></> :
-            <>
-            <Link to={"/user"}>
-              <i
-              onClick={handleAuthInClick}
-              class="fa-solid fa-right-from-bracket"
-              style={{coloe: "white"}}></i>
-            </Link>
-          </>
-          }
-        </div> */}
+        <button onClick={handleLogInClick}>Log in</button>
         <SelectList />
       </div>
     </nav>

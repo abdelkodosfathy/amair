@@ -1,106 +1,47 @@
-import { useState, useContext } from 'react'
-import axios from 'axios';
+import React, { useState } from 'react'
 import './card.css';
-import { DataContext } from '../Context'
 import dep from '../../imgs/dep2.jpg';
-
-const Card = ({ handleUnLoveCard,handleRemoveCard,onUpdate,action, data,...props}) => {
-  const darkMode = useContext(DataContext).darkMode;
+const Card = ({ data, ...props}) => {
   const myData = {
-    ...data,
-    darkMode
+    ...data
   }
+  // console.log(myData);
   const [loved,setLoved] = useState(myData.loved);
-  const loginData = useContext(DataContext).loginState;
 
-  function handleLovedCard(state , cardId) {
-    if(loginData.login){
-      setLoved(state);
-      const token = loginData.token;
-      axios({
-        headers: {
-          'Accept': 'application/vnd.api+json',
-          'Content-Type': 'application/vnd.api+json',
-          'Authorization': `Bearer ${token}`
-        },
-        method: `${state? 'post' : 'get'}`,
-        baseURL: 'https://app.having.market/api/',
-        url: `${state? 'fav' : 'delfav/'+cardId}`,
-        data: {
-          task_id: `${cardId}`,
-        }
-      }).then(e => {
-        console.log(e);
-      }).catch((e)=>{
-        console.log(e);
-      });
-    } else {
-      alert("u are not loged in")
-    }
-  }
   function handleLocation () {
-    // navigate to location
+    
   }
-  function handleCardClicked(){
-    console.log(myData);
-    props.onSelect(myData);
+  function handleLovedCard(state) {
+    setLoved(state);
   }
   return (
-    <div className="card-container">
-    <div className={`card ${myData.darkMode&& 'dark'} 
-    ${props.selectedIndex === myData.id && 'selected'}`} 
-    key={props.key} 
-    onClick={(e) => handleCardClicked(e)}>
-      <div className="card-img">
-      <img loading='lazy' src={`https://app.having.market/public/images/${myData.img[0].img_name}`} alt="" />
-      </div>
+    <div className='card' key={props.key}>
+      <img src={dep} alt="" className="card-img"/>
       <div className="card-data">
         <h2>{myData.type}</h2>
-        <div onClick={handleLocation}>
-          <p>{myData.city}</p>
-          <p>{myData.address}</p>
-        </div>
-        <h3>${myData.price || "3,000,000"}</h3>
+        <p onClick={handleLocation}>{myData.city +" "+ myData.address} <i className="fa-solid fa-location-dot"></i></p>
+        <h3>${myData.price}</h3>
         <div className="dep-features">
           {myData.bedrooms? <span><i className="fa-solid fa-bed"></i> {myData.bedrooms}</span> : null}
           {myData.bathrooms? <span><i className="fa-solid fa-bath"></i> {myData.bathrooms}</span> : null}
           {myData.size? <span><i className="fa-solid fa-ruler-combined"></i> {myData.size}</span> : null}
         </div>
         <div className="card-btns">
-          <button className='card-phone-btn'>
+          <button className='card-view-btn'>
             <i className="fa-solid fa-phone"></i>
           </button>
-          <button className='card-mail-btn'>
-            <i className="fa-solid fa-envelope"></i>
+          <button className='card-save-btn'>
+          <i className="fa-solid fa-envelope"></i>
           </button>
         </div>
         <div className="love-icon">
-          {
-            action === "fav" ? (<>
-              <i className="fa-solid fa-heart-crack"
-              onClick={() => handleUnLoveCard()}></i>
-              {myData.action === 0?<i class="fa-solid fa-s"></i>:
-              myData.action === 1? <i class="fa-solid fa-r"></i>: null}
-              </>
-            ) : action === "tasks" ? (
-              <>
-              <i className="fa-solid fa-xmark" onClick={() => handleRemoveCard()}></i>
-              <i className="fa-solid fa-pen" onClick={onUpdate}></i>
-              </>
-              ) : (
-            loved ? (
-              <i className="fa-solid fa-heart"
-              onClick={() => handleLovedCard(false, myData.id)}></i>
-            ) : (
-              <i className="fa-regular fa-heart"
-              onClick={() => handleLovedCard(true, myData.id)}></i>))
-          }
-          
-          <i className="fa-solid fa-location-dot"></i>
-        </div> 
+          {loved ? (<i className="fa-solid fa-heart" onClick={() => handleLovedCard(false)}></i> ) 
+          : (<i className="fa-regular fa-heart" onClick={() => handleLovedCard(true)}></i>)}
+        </div>
       </div>
-    </div>
+
     </div>
   )
 }
+
 export default Card
