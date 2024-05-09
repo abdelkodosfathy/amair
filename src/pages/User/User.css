@@ -5,8 +5,11 @@
   box-shadow: 0 0 23px -18px black;
   margin: auto;
   align-items: flex-start;
-  
 }
+.user-page .property-type{
+  justify-self: flex-start;
+}
+
 .fav{
   height: calc(100vh - 80px);
   overflow: hidden;

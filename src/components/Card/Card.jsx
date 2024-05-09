@@ -52,7 +52,7 @@ const Card = ({ handleUnLoveCard,handleRemoveCard,onUpdate,action, data,...props
     key={props.key} 
     onClick={(e) => handleCardClicked(e)}>
       <div className="card-img">
-      <img src={`https://app.having.market/public/images/${myData.img[0].img_name}`} alt="" />
+      <img loading='lazy' src={`https://app.having.market/public/images/${myData.img[0].img_name}`} alt="" />
       </div>
       <div className="card-data">
         <h2>{myData.type}</h2>

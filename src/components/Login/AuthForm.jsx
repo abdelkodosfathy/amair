@@ -36,9 +36,9 @@ const AuthForm = forwardRef(({}, ref) => {
       }
     }).catch(function (error) {
       if (error.response.status === 401) {
-        // console.log("Unauthorized: Wrong password or account");
-        alert("there is somthing wrong in data you entered..");
+        alert("Unauthorized: Wrong password or account");
       } else {
+        alert("there is somthing wrong in data you entered..");
         // console.log("An error occurred:", error.message);
       }
     });
@@ -64,7 +64,6 @@ const AuthForm = forwardRef(({}, ref) => {
         const resToken = e.data.data.token
         console.log(e);
         tokenChanger(resToken, 200);
-
       }
       setVerified("in progress");
       function checkVerify(){
@@ -82,8 +81,6 @@ const AuthForm = forwardRef(({}, ref) => {
             setVerified(true);
             navigate("/buy");
             LoginSuccessfully();
-            // dialog.current.close();
-
           }
         })
       }
@@ -199,14 +196,6 @@ const AuthForm = forwardRef(({}, ref) => {
             </>
             :
             verfied === true ? <>
-              {/* <dotlottie-player 
-                src="https://lottie.host/a59f5b57-f547-477e-9873-dbcee063026d/z5KjHWBpnc.json"
-                background="transparent"
-                speed="1"
-                style={{width: "300px", height: "300px"}}
-                
-                autoplay>
-              </dotlottie-player> */}
             <h3>Verfied Successfully</h3>
             </>
               :           

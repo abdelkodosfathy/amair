@@ -48,21 +48,21 @@ const User = () => {
   return (
     <div className='user-page'>
       <div className={`side-bar`}>
-        <div className="head">
-          <h1>Taps</h1>
-        </div>
         <div className="property-type">
-          <Button onClicked={() => propertyType("my properties")} proprety="my properties" isActivated={property.name}>
-            <i className="fa-solid fa-briefcase"></i>
-          </Button>
-          <Button onClicked={() => propertyType("favorites")} proprety="favorites" isActivated={property.name}>
-            <i className="fa-solid fa-heart"></i>
-          </Button>
-          <Button onClicked={() => propertyType("add property")} proprety="add property" isActivated={property.name}>
-            <i className="fa-solid fa-building"></i>
-          </Button>
-          <Button proprety="update" isActivated={property.name}>
-          </Button>
+          <h1>Taps</h1>
+          <div className="property-type-btns">
+            <Button onClicked={() => propertyType("my properties")} proprety="my properties" isActivated={property.name}>
+              <i className="fa-solid fa-briefcase"></i>
+            </Button>
+            <Button onClicked={() => propertyType("favorites")} proprety="favorites" isActivated={property.name}>
+              <i className="fa-solid fa-heart"></i>
+            </Button>
+            <Button onClicked={() => propertyType("add property")} proprety="add property" isActivated={property.name}>
+              <i className="fa-solid fa-building"></i>
+            </Button>
+            <Button proprety="update" isActivated={property.name}>
+            </Button>
+          </div>
         </div>
       </div>
       {property.name === "add property" ? <TabsForm onAddProp={handleNewProp} isUpdate={property.opject}/> :

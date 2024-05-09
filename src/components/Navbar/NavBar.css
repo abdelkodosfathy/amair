@@ -21,7 +21,7 @@
 
 .navbar .actions{
   display: flex;
-  gap: 20px;
+  gap: 40px;
   align-items: center;
 }
 .navbar .actions button{
@@ -39,19 +39,44 @@
   height: 20px;
   background-color: green;
   opacity: 0.2;
-    transition: all .4s;
-  }
-  #list-roll-down.is-active{
-    height: 150px;
-  opacity:1;
-  }
-  .close button {
-    border: none;
-    background: none;
-    cursor: pointer;
-    font-size: 18px;
-    position: absolute;
-    display: flex;
-    position: absolute;
-    z-index: 1;
-  }
+  transition: all .4s;
+}
+#list-roll-down.is-active{
+  height: 150px;
+opacity:1;
+}
+.close button {
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-size: 18px;
+  position: absolute;
+  display: flex;
+  position: absolute;
+  z-index: 1;
+}
+.user-icon{
+  position: relative;
+  font-size: 22px;
+}
+.user-icon .list-items {
+  box-shadow: 0 3px 7px -4px ;
+  font-size: 18px;
+  position: absolute;
+  left: -100px;
+  width: 130px;
+  z-index: 1;
+  background: white;
+  border-radius: 5px;
+  color: black;
+  padding: 5px;
+}
+.user-icon .list-items li{
+  margin: 5px;
+  padding: 5px;
+  border-radius: 3px;
+}
+.user-icon .list-items li:hover{
+  color: white;
+  background-color: var(--green);
+}
